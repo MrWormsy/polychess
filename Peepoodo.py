@@ -6,13 +6,18 @@ Created on Mon Dec 10 09:35:35 2018
 """
 
 from ModeJoueurContreJoueur import ModeJoueurContreJoueur
+from ModeJoueurContreOrdinateur import ModeJoueurContreOrdinateur
 
 def main():
     
-    if(input("Mode joueur vs joueur (1) ou Mode joueur vs AI (2) : ") == "1"):
+    inputStr = input("Mode joueur vs joueur (1) ou Mode joueur vs AI (2) ou Mode AI vs AI (3) : ")
+    
+    if(inputStr == "1"):
         modeJcJ = ModeJoueurContreJoueur()
         modeJcJ.commencerPartie()
-    else:
+    elif(inputStr == "2"):
+        modeJcO = ModeJoueurContreOrdinateur()
+        modeJcO.commencerPartie()
         
     
 if __name__ == "__main__":

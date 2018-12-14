@@ -55,12 +55,9 @@ class ModeJoueurContreJoueur:
             print("C'est au tour de", self.player1)
         else:
             print("C'est au tour de", self.player2)
-            
-        #On incremente l'id
-        self.turnId += 1
     
     def finDePartie(self):
-        if (self.winner == self.player1):
+        if (self.turnId%2 == 0):
             print(self.player1, " a gagné")
         else:
             print(self.player2, " a gagné")
@@ -76,5 +73,8 @@ class ModeJoueurContreJoueur:
         
             #On print le plateau et c'est au joueur suivant de jouer si il n'est pas en echec et mat
             print(self.board)
+            
+            #On incremente l'id
+            self.turnId += 1
             
         self.finDePartie()
