@@ -31,10 +31,10 @@ for move in moves:
     board.push(move)
     
     #display the board
-    print(board)
+    #print(board)
     
     #number of black moves
-    print("Black moves:" + str(board.legal_moves.count()))
+    #print("Black moves:" + str(board.legal_moves.count()))
     
     #undo the move
     board.pop()
