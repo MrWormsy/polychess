@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Dec 14 10:55:46 2018
+Created on Tue Dec 18 08:33:31 2018
 
 @author: anton
 """
 
 import chess
 
-class ModeJoueurContreOrdinateur:
+class ModeOrdinateurContreOrdinateur:
     
     def __init__(self):
-        self.player = input("Nom du joueur : ")
-        self.nameAI = "AI"
+        self.nameAI1 = "AI Missy"
+        self.nameAI2 = "AI MrWormsy"
         self.turnId = 0
         
         self.board = chess.Board()
@@ -40,9 +40,9 @@ class ModeJoueurContreOrdinateur:
     def notificationTourJoueur(self):
         #Un joueur choisi une action (on annonce le tour du joueur, si id%2 == 0 alors blanc donc joueur sinon noir)
         if(self.turnId%2 == 0):
-            print("C'est au tour de", self.player)
+            print("C'est au tour de", self.nameAI1)
         else:
-            print("C'est au tour de", self.nameAI)
+            print("C'est au tour de", self.nameAI2)
         
     def getAction(self):
         bestMove = ""
@@ -53,13 +53,10 @@ class ModeJoueurContreOrdinateur:
         
         #Player
         if(self.turnId%2 == 0):
-            action = input("Donner une action à réaliser (ex:" + bestMove  + ") : ")
-            while(self.moveEstLegal(action) == False):
-                print("L'action n'est pas autorisée, veuillez recommencer")
-                action = input("Donner une action à réaliser (ex:" + bestMove  + ") : ")
-            return chess.Move.from_uci(action)
+            print(self.nameAI1 + " a joue " + bestMove)
+            return chess.Move.from_uci(bestMove)
         else:
-            print(self.nameAI + " a joue " + bestMove)
+            print(self.nameAI2 + " a joue " + bestMove)
             return chess.Move.from_uci(bestMove)
     
     def moveEstLegal(self, action):
@@ -78,6 +75,6 @@ class ModeJoueurContreOrdinateur:
     
     def finDePartie(self):
         if (self.turnId%2 == 0):
-            print(self.player, " a gagné")
+            print(self.nameAI1, " a gagné")
         else:
-            print(self.nameAI, " a gagné")
+            print(self.nameAI2, " a gagné")
