@@ -2,7 +2,7 @@
 
 Tous les codes présent ici permettent de jouer une partie d'échec soit contre l'ordinateur soit contre un autre joueur.
 Les étapes permettant de réaliser ceci seront détaillé ci dessous.
-Pour permettre de jouer il faut <b dans tous les cas compiler le fichier polychees et polyglot.>b
+Pour permettre de jouer il faut dans tous les cas compiler le fichier polychees et polyglot.
  
 
 ### Polychess et Polyglot 
