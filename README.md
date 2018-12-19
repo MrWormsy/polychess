@@ -9,14 +9,14 @@ Pour permettre de jouer il faut dans tous les cas compiler le fichier polychees 
 
 Polychess montre comment la classe chess peut être utilisé, comment réaliser un mouvement par exemple. Polyglot permet de calculer le meilleur coups possible selon des données recensées d'un grand nombre de partie (bookfish).
  
-#Contribuors 
+# Contribuors 
 * MARTIN ROSA Antonin (Leader)
 * DELAGE Lucile (Mascotte)
 * PETIT David
 * COMBRIÉ Loïck
 
 
-#Main.py
+# Main.py
 
 Pour lancer une partie il faut compiler : 
 * polychess.py
@@ -30,21 +30,21 @@ Pour lancer une partie il faut compiler :
  
 Main.py est le fichier permettant l'initialisation de la partie et donc le choix du mode de jeu
 
-###ModeJoueurContreJoueur 
+### ModeJoueurContreJoueur 
 
 Ce fichier gère une partie d'échec entre deux joeurs. 
 
-##IA
+## IA
 
 Étant donnée toutes les possibilités d'une partie d'échec, tous ne sont par répertoriés dans bookfish.bin. Il peut alors arriver que la fonction polyglot ne puisse pas retourner de meilleurs coup possible. Il fautut alors utiliser une autre méthode  : 
 les fonctions AlphaBeta.py et MinMax.py ont pour role de trouver un bon coup (peut être pas le meilleur).
 
-###ModeJoueurContreOrdiateur
+### ModeJoueurContreOrdiateur
 
 Ce fichier gère une partie d'échec contre l'ordinateur. Les coups jouer par l'ordiateur sont déterminer 
 par polyglot ou par AlphaBeta.py
 
-###ModeOrdinateurContreOrdinateur 
+### ModeOrdinateurContreOrdinateur 
 
 Ce fichier gère une partie d'échec entre deux IA. 
 
