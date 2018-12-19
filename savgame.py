@@ -22,7 +22,7 @@ class SaveGame:
         #for i in range(len(listCoup)):
             #node = self.game.add_variation(chess.Move.from_uci("e2e4"))    
         self.game.add_line(listCoup)            
-        game_pgn = open("gamesave.txt","w",encoding="utf-8")
+        game_pgn = open("gamesave.pgn","w",encoding="utf-8")
         register = chess.pgn.FileExporter(game_pgn)
         self.game.accept(register)
         print(self.game)
@@ -39,7 +39,9 @@ class SaveGame:
             if values[i] !=  None :
                 print(self.game.headers[labels[i]])
                 self.game.headers[labels[i]]=values[i]
-                
+    
+    def readfillPGN(self):
+        pass
                 
         
 # ===================
