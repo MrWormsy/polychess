@@ -2,7 +2,7 @@ import chess
 import chess.pgn
 
 
-class saveParty:
+class SaveGame:
     """
     this class is used to save a party in PGN format
     
@@ -27,6 +27,15 @@ class saveParty:
 # Tests
 # ===================
         
-if __name__ == "__main__
+if __name__ == "__main__":
+    
+    board = chess.Board()
+    a="a2a4"
+    b=chess.Move.from_uci(a)
+    board.push(b)
+    gam = SaveGame(board)
+    print("Affichage PGN :")
+    print(gam.game)
+    gam.save_game()
 
         
