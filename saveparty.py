@@ -13,3 +13,20 @@ class saveParty:
          """
          self.game=chess.pgn.Game() #PGN format
          self.board=board
+         
+    def save_game(self):
+        """
+        register a game with pgn format in txt fill
+        """
+        game_pgn = open("gamesave.txt","w",encoding="utf-8")
+        register = chess.pgn.FileExporter(game_pgn)
+        self.game.accept(register)
+        game_pgn.close()
+        
+# ===================
+# Tests
+# ===================
+        
+if __name__ == "__main__
+
+        
