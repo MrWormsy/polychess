@@ -1,48 +1,50 @@
 # PolyChess
 
-PolyChess (named polychess as Git repository) is a Chess engine written in Python and used as practicals for a course on project management at the engineering school Polytech Annecy-Chambéry. 
+Tous les codes présent ici permettent de jouer une partie d'échec soit contre l'ordinateur soit contre un autre joueur.
+Les étapes permettant de réaliser ceci seront détaillé ci dessous.
+Pour permettre de jouer il faut <b dans tous les cas compiler le fichier polychees et polyglot.>b
+ 
 
-The aim of this repository is not to provide any complete Chess engine since students have to do it based on python-chess. As a consequence, persons interested in this project should check the different forks.
+### Polychess et Polyglot 
 
-The required features for PolyChess are: 
+Polychess montre comment la classe chess peut être utilisé, comment réaliser un mouvement par exemple. Polyglot permet de calculer le meilleur coups possible selon des données recensées d'un grand nombre de partie (bookfish).
+ 
+#Contribuors 
+* MARTIN ROSA Antonin (Leader)
+* DELAGE Lucile (Mascotte)
+* PETIT David
+* COMBRIÉ Loïck
 
-* PolyChess is able to play against a user, or to play against itself (through UCI and Winboard on Windows, or Arena on Mac)
-* The games played are stored in PGN format in a directory games, the PGN headers have to be filled
-* PolyChess can render the board either in text (on the console) or in SVG (thanks to python-chess, in Jupyter Notebooks)
-* PolyChess has an opening book (first as a Polyglot book, then using your own format)
-* PolyChess is able to play on Lichess (and eventually FICS)
-* PolyChess is modular, it is then easy to isolate a feature and to modify it
-* PolyChess has an AI (easy to modify) that could play for the engine
-* It is possible to enter a FEN position and obtain an evaluation from PolyChess
 
-## Milestones for the project
+#Main.py
 
-Milestone 1:
+Pour lancer une partie il faut compiler : 
+* polychess.py
+* polyglot.py
+* ModeJoueurContreJoueur.py
+* ModeJoueurContreOrdinateur.py
+* ModeOrdinateurContreOrdinateur.py
+* AlphaBeta.py 
+* MinMax.py
+* Main.py (en dernier)
+ 
+Main.py est le fichier permettant l'initialisation de la partie et donc le choix du mode de jeu
 
-PolyChess is able to play against user or another engine through UCI, has an opening book and an AI
+###ModeJoueurContreJoueur 
 
-Milestone 2:
+Ce fichier gère une partie d'échec entre deux joeurs. 
 
-PolyChess plays on Lichess (and FICS) 
+##IA
 
-Milestone 3:
+Étant donnée toutes les possibilités d'une partie d'échec, tous ne sont par répertoriés dans bookfish.bin. Il peut alors arriver que la fonction polyglot ne puisse pas retourner de meilleurs coup possible. Il fautut alors utiliser une autre méthode  : 
+les fonctions AlphaBeta.py et MinMax.py ont pour role de trouver un bon coup (peut être pas le meilleur).
 
-Board representation and legal moves are no longer provided by python-chess but are students' responsibilities
+###ModeJoueurContreOrdiateur
 
-## New techniques/skills/terms to get acquainted with
+Ce fichier gère une partie d'échec contre l'ordinateur. Les coups jouer par l'ordiateur sont déterminer 
+par polyglot ou par AlphaBeta.py
 
-* Chess (maybe)
-* Universal Chess Interface (UCI) (http://wbec-ridderkerk.nl/html/UCIProtocol.html)
-* Portable General Notation (PGN)
-* Board representation (bitboards, 0x88, 120-square representation, 64-square representation)
-* MinMax (Negamax)
-* Alpha-Beta pruning
-* Chess rules (five fold repetition, seventy-five moves)
-* Opening book (Polyglot)
-* Forsyth-Edwards Notation (FEN) (https://www.chessprogramming.org/Forsyth-Edwards_Notation)
-* Piece-Square table
-* Move ordering
-* Position evaluation
-* Transposition table
-* Zobrist key
-* Perft
+###ModeOrdinateurContreOrdinateur 
+
+Ce fichier gère une partie d'échec entre deux IA. 
+
