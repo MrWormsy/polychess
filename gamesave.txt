@@ -1,4 +1,4 @@
-[Event "?"]
+[Event "test"]
 [Site "?"]
 [Date "????.??.??"]
 [Round "?"]
@@ -6,5 +6,5 @@
 [Black "?"]
 [Result "*"]
 
-*
+1. e4 b3 2. b4 *
 
