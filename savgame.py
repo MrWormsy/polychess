@@ -41,7 +41,21 @@ class SaveGame:
                 self.game.headers[labels[i]]=values[i]
     
     def readfillPGN(self):
-        pass
+        """
+        open game who have been save
+        """
+        pgn = open("gamesave.pgn",encoding="utf-8-sig")
+        go_game=chess.pgn.read_game(pgn)
+        print("Event is : ",go_game.headers["Event"])
+        Board=go_game.board()
+        # Iterate through all moves and play them on a board.
+        for move in go_game.mainline_moves():
+            print(move)
+            Board.push(move)
+        
+
+        
+        
                 
         
 # ===================
@@ -60,5 +74,6 @@ if __name__ == "__main__":
     print("Affichage PGN :")
     listCoup=[chess.Move.from_uci("e2e4"),chess.Move.from_uci("b2b3"),chess.Move.from_uci("b3b4")]
     gam.save_game(listCoup)
+    gam.readfillPGN()
 
         
