@@ -11,7 +11,7 @@ Polychess montre comment la classe chess peut être utilisé, comment réaliser 
  
 # Contribuors 
 * MARTIN ROSA Antonin (Leader)
-* DELAGE Lucile (Mascotte)
+* DELAGE Lucile
 * PETIT David
 * COMBRIÉ Loïck
 
