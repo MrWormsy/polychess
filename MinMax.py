@@ -5,77 +5,99 @@ Created on Tue Dec 18 09:26:16 2018
 @author: anton
 """
 
+import chess
+
 class MinMax:
-    # print utility value of root node (assuming it is max)
-    # print names of all nodes visited during search
-    def __init__(self, game_tree):
-        self.game_tree = game_tree  # GameTree
-        self.root = game_tree.root  # GameNode
-        self.currentNode = None     # GameNode
-        self.successors = []        # List of GameNodes
-        return
+    def minimaxRoot(depth, board,isMaximizing):
+        possibleMoves = board.legal_moves
+        bestMove = -9999
+        bestMoveFinal = None
+        for x in possibleMoves:
+            move = chess.Move.from_uci(str(x))
+            board.push(move)
+            value = max(bestMove, MinMax.minimax(depth - 1, board,-10000,10000, not isMaximizing))
+            board.pop()
+            if( value > bestMove):
+                #print("Best score: " ,str(bestMove))
+                #print("Best move: ",str(bestMoveFinal))
+                bestMove = value
+                bestMoveFinal = move
+        return bestMoveFinal
+    
+    def minimax(depth, board, alpha, beta, is_maximizing):
+        if(depth == 0):
+            return -MinMax.evaluation(board)
+        possibleMoves = board.legal_moves
+        if(is_maximizing):
+            bestMove = -9999
+            for x in possibleMoves:
+                move = chess.Move.from_uci(str(x))
+                board.push(move)
+                bestMove = max(bestMove,MinMax.minimax(depth - 1, board,alpha,beta, not is_maximizing))
+                board.pop()
+                alpha = max(alpha,bestMove)
+                if beta <= alpha:
+                    return bestMove
+            return bestMove
+        else:
+            bestMove = 9999
+            for x in possibleMoves:
+                move = chess.Move.from_uci(str(x))
+                board.push(move)
+                bestMove = min(bestMove, MinMax.minimax(depth - 1, board,alpha,beta, not is_maximizing))
+                board.pop()
+                beta = min(beta,bestMove)
+                if(beta <= alpha):
+                    return bestMove
+            return bestMove
+    
+    
+    def calculateMove(board):
+        possible_moves = board.legal_moves
+        if(len(possible_moves) == 0):
+            print("The game is over... No more moves available")
+        bestMove = None
+        bestValue = -9999
+        for x in possible_moves:
+            move = chess.Move.from_uci(str(x))
+            board.push(move)
+            boardValue = -MinMax.evaluation(board)
+            board.pop()
+            if(boardValue > bestValue):
+                bestValue = boardValue
+                bestMove = move
+    
+        return bestMove
+    
+    def evaluation(board):
+        i = 0
+        evaluation = 0
+        x = True
+        try:
+            x = bool(board.piece_at(i).color)
+        except:
+            x = x
+        while i < 63:
+            i += 1
+            evaluation = evaluation + (MinMax.getPieceValue(str(board.piece_at(i))) if x else -MinMax.getPieceValue(str(board.piece_at(i))))
+        return evaluation
+    
+    
+    def getPieceValue(piece):
+        if(piece == None):
+            return 0
+        value = 0
+        if piece == "P" or piece == "p":
+            value = 10
+        if piece == "N" or piece == "n":
+            value = 30
+        if piece == "B" or piece == "b":
+            value = 30
+        if piece == "R" or piece == "r":
+            value = 50
+        if piece == "Q" or piece == "q":
+            value = 90
+        if piece == 'K' or piece == 'k':
+            value = 900
 
-    def minimax(self, node):
-        # first, find the max value
-        best_val = self.max_value(node) # should be root node of tree
-
-        # second, find the node which HAS that max value
-        #  --> means we need to propagate the values back up the
-        #      tree as part of our minimax algorithm
-        successors = self.getSuccessors(node)
-        print("MiniMax:  Utility Value of Root Node: = " + str(best_val))
-        # find the node with our best move
-        best_move = None
-        for elem in successors:   # ---> Need to propagate values up tree for this to work
-            if elem.value == best_val:
-                best_move = elem
-                break
-
-        # return that best value that we've found
-        return best_move
-
-
-    def max_value(self, node):
-        print("MiniMax-->MAX: Visited Node :: " + node.Name)
-        if self.isTerminal(node):
-            return self.getUtility(node)
-
-        infinity = float('inf')
-        max_value = -infinity
-
-        successors_states = self.getSuccessors(node)
-        for state in successors_states:
-            max_value = max(max_value, self.min_value(state))
-        return max_value
-
-    def min_value(self, node):
-        print("MiniMax-->MIN: Visited Node :: " + node.Name)
-        if self.isTerminal(node):
-            return self.getUtility(node)
-
-        infinity = float('inf')
-        min_value = infinity
-
-        successor_states = self.getSuccessors(node)
-        for state in successor_states:
-            min_value = min(min_value, self.max_value(state))
-        return min_value
-
-    #                     #
-    #   UTILITY METHODS   #
-    #                     #
-
-    # successor states in a game tree are the child nodes...
-    def getSuccessors(self, node):
-        assert node is not None
-        return node.children
-
-    # return true if the node has NO children (successor states)
-    # return false if the node has children (successor states)
-    def isTerminal(self, node):
-        assert node is not None
-        return len(node.children) == 0
-
-    def getUtility(self, node):
-        assert node is not None
-        return node.value
+        return value
