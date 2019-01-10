@@ -4,8 +4,10 @@ Created on Fri Dec 14 09:36:05 2018
 
 @author: anton
 """
+
 import chess
 import chess.polyglot
+
 
 class ModeJoueurContreJoueur:
     
@@ -33,6 +35,7 @@ class ModeJoueurContreJoueur:
                 break
         
         action = input("Donner une action à réaliser (ex:" + bestMove  + ") : ")
+        
         while(self.moveEstLegal(action) == False):
             print("L'action n'est pas autorisée, veuillez recommencer")
             action = input("Donner une action à réaliser (ex:" + bestMove  + ") : ")
@@ -40,6 +43,7 @@ class ModeJoueurContreJoueur:
         return chess.Move.from_uci(action)
     
     def moveEstLegal(self, action):
+        
         try:
             tempMove = chess.Move.from_uci(action)
         except:

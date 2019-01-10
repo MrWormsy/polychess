@@ -31,7 +31,7 @@ class ModeJoueurContreOrdinateur:
         
             #On print le plateau et c'est au joueur suivant de jouer si il n'est pas en echec et mat
             print(self.board)
-            
+        
             #On incremente l'id
             self.turnId += 1
             

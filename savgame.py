@@ -49,6 +49,7 @@ class SaveGame:
         print("Event is : ",go_game.headers["Event"])
         Board=go_game.board()
         # Iterate through all moves and play them on a board.
+        print("line", go_game.mainline())
         for move in go_game.mainline_moves():
             print(move)
             Board.push(move)
