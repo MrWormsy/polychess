@@ -9,7 +9,7 @@ Pour permettre de jouer il faut dans tous les cas compiler le fichier polychees 
 
 Polychess montre comment la classe chess peut être utilisé, comment réaliser un mouvement par exemple. Polyglot permet de calculer le meilleur coups possible selon des données recensées d'un grand nombre de partie (bookfish).
  
-# Contribuors 
+# Contributors 
 * MARTIN ROSA Antonin (Leader)
 * DELAGE Lucile
 * PETIT David
