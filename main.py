@@ -8,15 +8,12 @@ Created on Mon Dec 10 09:35:35 2018
 from ModeJoueurContreJoueur import ModeJoueurContreJoueur
 from ModeJoueurContreOrdinateur import ModeJoueurContreOrdinateur
 from ModeOrdinateurContreOrdinateur import ModeOrdinateurContreOrdinateur
-import Utils
-
-import chess
 
 def main():
     choixModeDeJeu()
 
 def choixModeDeJeu():
-    inputStr = input("Mode joueur vs joueur (1) ou Mode joueur vs AI (2) ou Mode AI vs AI (3) ou Mode Debug (4) : ")
+    inputStr = input("Mode joueur vs joueur (1) ou Mode joueur vs AI (2) ou Mode AI vs AI (3) : ")
     
     flag = False
     
@@ -33,9 +30,6 @@ def choixModeDeJeu():
         elif(inputStr == "3"):
             modeOcO = ModeOrdinateurContreOrdinateur()
             modeOcO.commencerPartie()
-        elif(inputStr == "4"):
-            #tree = Utils.Rt
-            Utils.createTreeFromBoard(chess.Board(), 0)
         else:
             flag = False
             inputStr = input("Mode joueur vs joueur (1) ou Mode joueur vs AI (2) ou Mode AI vs AI (3) ou Mode Debug (4) : ")
