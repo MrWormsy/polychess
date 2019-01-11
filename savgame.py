@@ -37,7 +37,7 @@ class SaveGame:
         for i in range(len(labels)):
             
             if values[i] !=  None :
-                print(self.game.headers[labels[i]])
+                #print(self.game.headers[labels[i]])
                 self.game.headers[labels[i]]=values[i]
     
     def readfillPGN(self):

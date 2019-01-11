@@ -1,3 +1,9 @@
+"""
+Created on Mon Dec 10 09:35:35 2018
+
+@authors: MrWormsy (AKA Antonin ROSA-MARTIN), Loick Combrie, Lucile Delage and David Petit
+"""
+
 ''' permet d'évaluer à partir d'un FEN quelle équipe a le plus de chance de gagner '''
 def evaluation (fen) : 
     liste_a_suppr=["1","2","3","4","5","6","7","8","/"]
@@ -14,6 +20,6 @@ def evaluation (fen) :
     elif cpt>0: 
         res="The white might win"
     else : 
-        res=" Black or White , that is the question"
+        res=" Black or White , that is the question..."
     return(res)
 

@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Dec 14 09:36:05 2018
+Created on Mon Dec 10 09:35:35 2018
 
-@author: anton
+@authors: MrWormsy (AKA Antonin ROSA-MARTIN), Loick Combrie, Lucile Delage and David Petit
 """
 
 import chess
 import chess.polyglot
 
+import Evaluation_FEN
+from savgame import SaveGame
 
 class ModeJoueurContreJoueur:
     
@@ -20,6 +22,11 @@ class ModeJoueurContreJoueur:
         self.turnId = 0 #Id of the turn
         
         self.board = chess.Board()
+        
+        self.gam = SaveGame(self.board)
+        self.gam.headers(["test",None,None,None,None,None,None])
+        print("Affichage PGN :")
+        self.listCoups = [] 
         
         #We print the board
         print(self.board)
@@ -59,8 +66,12 @@ class ModeJoueurContreJoueur:
             print("C'est au tour de", self.player1)
         else:
             print("C'est au tour de", self.player2)
+            
+        print(Evaluation_FEN.evaluation(self.board.fen()))
     
     def finDePartie(self):
+        self.gam.save_game(self.listCoups)
+        
         if (self.turnId%2 == 0):
             print(self.player1, " a gagné")
         else:
@@ -72,11 +83,15 @@ class ModeJoueurContreJoueur:
             
             self.notificationTourJoueur()
                 
+            move = self.getAction()
+            
             #Si l'action est possible alors on la réalise
-            self.board.push(self.getAction())
+            self.board.push(move)
         
             #On print le plateau et c'est au joueur suivant de jouer si il n'est pas en echec et mat
             print(self.board)
+            
+            self.listCoups.append(move)
             
             #On incremente l'id
             self.turnId += 1

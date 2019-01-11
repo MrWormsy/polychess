@@ -1,3 +1,9 @@
+"""
+Created on Mon Dec 10 09:35:35 2018
+
+@authors: MrWormsy (AKA Antonin ROSA-MARTIN), Loick Combrie, Lucile Delage and David Petit
+"""
+
 #python-chess import
 #https://github.com/niklasf/python-chess
 import chess

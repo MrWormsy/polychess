@@ -1,13 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Dec 14 10:55:46 2018
+Created on Mon Dec 10 09:35:35 2018
 
-@author: anton
+@authors: MrWormsy (AKA Antonin ROSA-MARTIN), Loick Combrie, Lucile Delage and David Petit
 """
+
+#demande de sauvegarde de partie 
+#fen recalcule le fen 
 
 import chess
 from MinMax import MinMax
 import chess.svg
+
+import Evaluation_FEN
+from savgame import SaveGame
 
 from IPython.display import SVG, display
 
@@ -19,6 +25,11 @@ class ModeJoueurContreOrdinateur:
         self.turnId = 0
         
         self.board = chess.Board()
+        
+        self.gam = SaveGame(self.board)
+        self.gam.headers(["test",None,None,None,None,None,None])
+        print("Affichage PGN :")
+        self.listCoups = [] 
         
     def commencerPartie(self):
         
@@ -41,6 +52,8 @@ class ModeJoueurContreOrdinateur:
             #On incremente l'id
             self.turnId += 1
             
+            self.listCoups.append(move)
+            
             lastMove = move
             
         self.finDePartie()
@@ -51,6 +64,8 @@ class ModeJoueurContreOrdinateur:
             print("C'est au tour de", self.player)
         else:
             print("C'est au tour de", self.nameAI)
+            
+        print(Evaluation_FEN.evaluation(self.board.fen()))
         
     def getAction(self):
         bestMove = ""
@@ -94,6 +109,8 @@ class ModeJoueurContreOrdinateur:
         return not self.board.is_game_over()
     
     def finDePartie(self):
+        self.gam.save_game(self.listCoups)
+        
         if (self.turnId%2 == 0):
             print(self.player, " a gagné")
         else:

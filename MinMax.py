@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Dec 18 09:26:16 2018
+Created on Mon Dec 10 09:35:35 2018
 
-@author: anton
+@authors: MrWormsy (AKA Antonin ROSA-MARTIN), Loick Combrie, Lucile Delage and David Petit
 """
 
 import chess

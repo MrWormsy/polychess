@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Dec 18 08:33:31 2018
+Created on Mon Dec 10 09:35:35 2018
 
-@author: anton
+@authors: MrWormsy (AKA Antonin ROSA-MARTIN), Loick Combrie, Lucile Delage and David Petit
 """
 
 import chess
 import chess.svg
 
+import Evaluation_FEN
+from savgame import SaveGame
 from IPython.display import SVG, display
 from MinMax import MinMax
 
@@ -19,6 +21,11 @@ class ModeOrdinateurContreOrdinateur:
         self.turnId = 0
         
         self.board = chess.Board()
+        
+        self.gam = SaveGame(self.board)
+        self.gam.headers(["test",None,None,None,None,None,None])
+        print("Affichage PGN :")
+        self.listCoups = []        
         
     def commencerPartie(self):
         
@@ -41,6 +48,8 @@ class ModeOrdinateurContreOrdinateur:
             #On incremente l'id
             self.turnId += 1
             
+            self.listCoups.append(move)
+            
             lastMove = move
             
         self.finDePartie()
@@ -51,6 +60,8 @@ class ModeOrdinateurContreOrdinateur:
             print("C'est au tour de", self.nameAI1)
         else:
             print("C'est au tour de", self.nameAI2)
+            
+        print(Evaluation_FEN.evaluation(self.board.fen()))
     
     def getAction(self):
         bestMove = ""
@@ -80,6 +91,8 @@ class ModeOrdinateurContreOrdinateur:
         return not self.board.is_game_over()
     
     def finDePartie(self):
+        self.gam.save_game(self.listCoups)
+        
         if (self.turnId%2 == 0):
             print(self.nameAI1, " a gagné")
         else:

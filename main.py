@@ -2,7 +2,7 @@
 """
 Created on Mon Dec 10 09:35:35 2018
 
-@author: MrWormsy
+@authors: MrWormsy (AKA Antonin ROSA-MARTIN), Loick Combrie, Lucile Delage and David Petit
 """
 
 from ModeJoueurContreJoueur import ModeJoueurContreJoueur
